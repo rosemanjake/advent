@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\rosem\\adventofcode\\advent\\day3\\day3\\day3.csproj": {}
+    "C:\\Users\\rosem\\adventofcode\\advent\\day3\\day3.csproj": {}
   },
   "projects": {
-    "C:\\Users\\rosem\\adventofcode\\advent\\day3\\day3\\day3.csproj": {
+    "C:\\Users\\rosem\\adventofcode\\advent\\day3\\day3.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rosem\\adventofcode\\advent\\day3\\day3\\day3.csproj",
+        "projectUniqueName": "C:\\Users\\rosem\\adventofcode\\advent\\day3\\day3.csproj",
         "projectName": "day3",
-        "projectPath": "C:\\Users\\rosem\\adventofcode\\advent\\day3\\day3\\day3.csproj",
+        "projectPath": "C:\\Users\\rosem\\adventofcode\\advent\\day3\\day3.csproj",
         "packagesPath": "C:\\Users\\rosem\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rosem\\adventofcode\\advent\\day3\\day3\\obj\\",
+        "outputPath": "C:\\Users\\rosem\\adventofcode\\advent\\day3\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\rosem\\AppData\\Roaming\\NuGet\\NuGet.Config",
