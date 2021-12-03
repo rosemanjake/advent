@@ -19,15 +19,81 @@ namespace day3
 
             List<Dictionary<char, int>> counts = getFreqs(binary);
             long gamma = getFinal(counts, "gamma");
-            long epsilon = getFinal(counts, "epsilon");
+            long epsilon = getFinal(counts, "epsilon");   
 
-            Console.Write($"Solution for Part 1 is {gamma * epsilon}");
+            Console.Write($"Solution for Part 1 is:\ngamma = {gamma}\nepsilon = {epsilon}");
+
+            List<string> ox = part2(binary, "ox");
+            List<string> co = part2(binary, "co");
+            Console.Write($"\n\nSolution for Part 2 is:\noxygen generator rating = {ox[0]}\nC02 scrubber rating = {co[0]}");
+        }
+
+        static List<string> part2(List<string> binary, string type)
+        {
+            List<string> retlist = binary;
+
+            for (int i = 0; i < 12; i++)
+            {
+                retlist = filterList(retlist, type, i);
+            }
+
+            return retlist;
+        }
+
+        static List<string> filterList(List<string> binary, string type, int index)
+        {
+            if (binary.Count == 1)
+            {
+                return binary;
+            }
+
+            List<string> filtered = new List<string>();
+            List<Dictionary<char, int>> freqs = getFreqs(binary);
+
+            int zerofreq = freqs[index]['0'];
+            int onefreq = freqs[index]['1'];
+
+            char target = '0';
+
+            if (type == "ox")
+            {
+                if (zerofreq > onefreq){
+                    target = '0';
+                }
+                if (zerofreq == onefreq)
+                {
+                    target = '1';
+                }
+                if (onefreq > zerofreq)
+                {
+                    target = '1';
+                }
+            }        
+            else if(type == "co")
+            {
+                if (zerofreq < onefreq)
+                {
+                    target = '0';
+                }
+                if (zerofreq == onefreq)
+                {
+                    target = '0';
+                }
+                if (onefreq < zerofreq)
+                {
+                    target = '1';
+                }
+            }
 
             foreach (string num in binary)
             {
-                Console.WriteLine(num[0]);
-
+                if (num[index] == target)
+                {
+                    filtered.Add(num);
+                } 
             }
+
+            return filtered;
         }
 
         static long getFinal(List<Dictionary<char, int>> counts, string type)
