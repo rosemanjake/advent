@@ -69,6 +69,7 @@ class Result:
         self.type = a_type
         self.count = nums
         self.unmarked = Result.get_unmarked(self)
+        self.solution = Result.get_solution(self)
     
     @staticmethod
     def get_unmarked(self):
@@ -79,14 +80,13 @@ class Result:
                     unmarked.append(num)
         return unmarked
 
+    @staticmethod
     def get_solution(self):
-        # for some reason self.drawn updates whenever I append a value to drawn_numbers in play_game(). I didn't have time to fully debug it, so I'm passing in the count and doing this hack to make sure we only track the numbers in play at the time the board won.
-        drawn = [self.drawn[i] for i in range(len(self.drawn)) if i < self.count]
-        return sum(self.unmarked) * drawn[len(drawn) - 1]
+        return sum(self.unmarked) * self.drawn[len(self.drawn) - 1]
 
 input = get_input("day4.txt")
 numbers = get_numbers(input)
 boards = get_boards(input)
 results = play_game(numbers, boards)
-print(f"solution for part 1 = {results[0].get_solution()}")
-print(f"solution for part 2 = {results[len(results) - 1].get_solution()}")
+print(f"solution for part 1 = {results[0].solution}")
+print(f"solution for part 2 = {results[len(results) - 1].solution}")
