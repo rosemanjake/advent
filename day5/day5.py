@@ -22,14 +22,17 @@ def get_lines(coords, part):
     return [line for line in lines if not line == "diagonal" and not line == "point"]
     
 def draw_full_line(nums, part):
+    # Get out starting points
     startx = nums[0]
     starty = nums[1]
     endx = nums[2]
     endy = nums[3]
 
+    # Number of steps we'll need to make to get to the end point
     xsteps = abs(startx-endx)
     ysteps = abs(starty-endy)
 
+    # Are we dealing with a straight line, a diagonal line, or a point?
     if xsteps == 0 and ysteps == 0:
         return nums
     elif xsteps == 0 or ysteps == 0:
@@ -40,12 +43,13 @@ def draw_full_line(nums, part):
     if type == "diagonal" and part == "1":
         return "diagonal"
 
+    # Initialise the variables tracking our current position on each axis
     currx = startx
     curry = starty
 
+    # How much are we incrementing with each step on each axis?
     x_increment = 0
     y_increment = 0
-
     if currx > endx:
         x_increment = -1
     elif currx < endx:
@@ -55,23 +59,31 @@ def draw_full_line(nums, part):
     elif curry < endy:
         y_increment = 1 
 
-    line = []
-    line.append([startx, starty])
+    # Initialise return vector with our starting coords
+    vector = []
+    vector.append([startx, starty])
+
+    # How many steps have we so far taken?
     xstep_count = 0
     ystep_count = 0
 
+    # While steps remain to be stepped
     while not (xstep_count == xsteps and ystep_count == ysteps):      
+        # If we still need to progress on the x axis, increment
         if not xstep_count == xsteps:
             currx += x_increment         
             xstep_count += 1
         
+        # If we still need to progress on the y axis, increment
         if not ystep_count == ysteps:
             curry += y_increment         
             ystep_count += 1
 
-        line.append([currx, curry])  
+        # Append new coords to the vector we'll return 
+        vector.append([currx, curry])  
 
-    return line
+    # return the vector
+    return vector
 
 def get_crosses(lines):
     counter = {}
