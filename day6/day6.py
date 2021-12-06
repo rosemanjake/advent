@@ -11,17 +11,16 @@ def get_state(text):
     return counter
 
 def increment(state):
-    counter = state
     for num in state.keys():
-        if not counter[num] == 0 and not num == -1:
-            counter[num - 1] += counter[num]
-            counter[num] -= counter[num]
+        if not state[num] == 0 and not num == -1:
+            state[num - 1] += state[num]
+            state[num] -= state[num]
 
-    if -1 in counter.keys():
-        counter[6] += counter[-1]
-        counter[8] += counter[-1]
-        counter[-1] = 0
-    return counter
+    if -1 in state.keys():
+        state[6] += state[-1]
+        state[8] += state[-1]
+        state[-1] = 0
+    return state
 
 def get_total(state, days):
     for i in range(days):
