@@ -22,10 +22,11 @@ def get_complex_cost(target):
     return sum(complex_costs)
 
 def find_lowest(avg, cycles): 
-    cost_dict = {}
-    cost_dict[avg] = get_complex_cost(avg)
+    cost_dict = {} 
     steps = round(cycles / 2)
-    for step in range(steps):       
+    for step in range(steps):
+        if (step == 0):
+            cost_dict[avg] = get_complex_cost(avg)       
         cost_dict[avg - step] = get_complex_cost(avg - step)
         cost_dict[avg + step] = get_complex_cost(avg + step)
     
@@ -37,4 +38,4 @@ median = statistics.median(nums)
 avg = round(sum(nums) / len(nums))
 
 print(f"solution to part 1 = {sum(get_base_cost(median))}")
-print(f"solution to part 2 = {find_lowest(avg, 5)}")
+print(f"solution to part 2 = {find_lowest(avg, 10)}")
